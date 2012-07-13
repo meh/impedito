@@ -17,4 +17,6 @@
 # along with impedito. If not, see <http://www.gnu.org/licenses/>.
 #++
 
-
+Impedito.define_window :filesystem do
+	title 'Filesystem!'
+end

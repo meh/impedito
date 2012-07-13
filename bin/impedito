@@ -1,0 +1,22 @@
+#! /usr/bin/env ruby
+require 'optparse'
+require 'impedito'
+
+options = {}
+
+OptionParser.new do |o|
+	o.on '-v', '--version', 'show version and exit' do
+		puts "impedito #{Impedito.version}"
+		exit
+	end
+end.parse!
+
+impedito = Impedito.load(ARGV.first || '~/.impedito/config')
+
+%w[INT KILL].each {|sig|
+	trap sig do
+		impedito.stop
+	end
+}
+
+impedito.start
